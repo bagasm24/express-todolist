@@ -23,23 +23,14 @@ module.exports = {
       data: user,
     });
   },
-  registerUser: async (req, res) => {
-    const data = req.body;
+  getUserTodo: async (req, res) => {
+    const { id } = req.params;
 
-    try {
-      const hashPassword = bcrypt.hashSync(data.password, 10)
-      data.password = hashPassword
+    const todos = await Todo.findAll({ where: { user_id: id } });
 
-      await User.create(data)
-
-      res.status(201).json({
-        message : "Berhasil menambahkan user"
-      });
-    } catch (error) {
-      res.json({
-        message: "Gagal menambahkan user",
-        error : error.message
-      })
-    }
+    res.json({
+      message: "data todo dengan user " + id + " "+ "ditemukan",
+      data : todos
+    });
   },
 };

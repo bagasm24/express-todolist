@@ -67,4 +67,17 @@ module.exports = {
       });
     }
   },
+  deleteAllTodo : async (req, res) => {
+    try {
+      await Todo.truncate();
+      res.json({
+        message : "Semua data Todo Berhasil dihapus"
+      })
+    } catch (error) {
+      res.status(500).json({
+        message: "Gagal menghapus semua data todo",
+        error: error.message,
+      });
+    }
+  }
 };
