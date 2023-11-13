@@ -15,7 +15,7 @@ module.exports = {
 
         if (!checkPassword) throw new Error ("invalid Password")
 
-        const token = jwt.sign({id: user._id, email: user.email}, process.env.JWT_KEY)
+        const token = jwt.sign({id: user.id, email: user.email}, process.env.JWT_KEY)
 
          res.json({
           message: "login successfull",
