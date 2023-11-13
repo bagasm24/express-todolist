@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User }  = require("../models");
 const { Todo } = require("../models");
 const bcrypt = require("bcrypt");
 
@@ -17,7 +17,6 @@ module.exports = {
       where: { id: id },
       include: { model: Todo, as: "todos" },
     });
-
     res.json({
       message: "berhasil menampilkan data dengan id : " + id,
       data: user,
